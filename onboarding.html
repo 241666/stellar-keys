@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102e2b">
+  <title>新手導覽｜Eden Keys 桃源鍵境</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #081411;
+      --panel: rgba(18, 38, 33, .92);
+      --panel-soft: rgba(31, 58, 49, .72);
+      --line: rgba(190, 218, 193, .2);
+      --text: #edf3e8;
+      --muted: #afc2b2;
+      --mint: #a8d7b4;
+      --gold: #e5d2a0;
+      --rose: #e9b9b1;
+      --blue: #b8d7df;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: "DFKai-SB", "BiauKai", "KaiTi", "標楷體", serif;
+      background:
+        radial-gradient(ellipse at 15% 10%, rgba(71, 116, 88, .23), transparent 35%),
+        radial-gradient(ellipse at 90% 80%, rgba(67, 94, 86, .22), transparent 32%),
+        linear-gradient(135deg, #07120f, #12251f 55%, #0b1715);
+      line-height: 1.7;
+    }
+    body::before {
+      content: "";
+      position: fixed; inset: 0; pointer-events: none; opacity: .18;
+      background-image: radial-gradient(#d7e8d2 1px, transparent 1px);
+      background-size: 47px 47px;
+      mask-image: linear-gradient(to bottom, black, transparent 80%);
+    }
+    a { color: inherit; }
+    button { font: inherit; cursor: pointer; }
+    .shell { width: min(920px, calc(100% - 32px)); margin: 0 auto; padding: 22px 0 40px; position: relative; }
+    header { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:24px; }
+    .brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .brand-mark { display:grid; place-items:center; width:40px; height:40px; border:1px solid #73927c; border-radius:50%; color:var(--mint); font-size:22px; }
+    .brand strong { display:block; letter-spacing:.08em; font-size:15px; }
+    .brand small { display:block; color:var(--muted); font-size:12px; }
+    .exit-link { color:var(--muted); font-size:13px; text-decoration:none; border-bottom:1px solid var(--line); }
+    .progress-wrap { margin-bottom:20px; }
+    .progress-meta { display:flex; justify-content:space-between; gap:10px; color:var(--muted); font-size:13px; margin-bottom:8px; }
+    .progress-track { height:5px; border-radius:99px; background:#23372e; overflow:hidden; }
+    .progress-fill { height:100%; width:25%; background:linear-gradient(90deg,#739c7b,var(--gold)); transition:width .25s ease; }
+    .panel { background:linear-gradient(145deg, var(--panel), rgba(13, 29, 25, .96)); border:1px solid var(--line); border-radius:22px; padding:clamp(20px, 5vw, 42px); box-shadow:0 24px 70px rgba(0,0,0,.22), inset 0 0 0 1px rgba(255,255,255,.018); }
+    .eyebrow { color:var(--gold); font-size:12px; letter-spacing:.16em; text-transform:uppercase; margin-bottom:10px; }
+    h1 { font-size:clamp(28px, 5vw, 42px); line-height:1.3; margin:0 0 14px; font-weight:600; }
+    h2 { font-size:22px; margin:0 0 8px; }
+    p { margin:8px 0 14px; }
+    .muted { color:var(--muted); }
+    .welcome-art { min-height:180px; border:1px solid var(--line); border-radius:18px; margin:24px 0; display:grid; place-items:center; text-align:center; overflow:hidden; background:radial-gradient(circle at 50% 25%,rgba(196,213,161,.22),transparent 18%),linear-gradient(180deg,rgba(79,119,89,.18),rgba(9,22,18,.25)); }
+    .moon { width:70px; height:70px; border-radius:50%; background:#e5d8b6; box-shadow:0 0 45px rgba(229,216,182,.22); margin:12px auto 4px; }
+    .mountains { color:#789985; font-size:clamp(22px,5vw,42px); letter-spacing:.12em; }
+    .steps { display:flex; gap:8px; flex-wrap:wrap; margin:22px 0; }
+    .pill { border:1px solid var(--line); border-radius:999px; padding:5px 11px; color:var(--muted); font-size:13px; }
+    .btn-row { display:flex; justify-content:space-between; gap:12px; margin-top:26px; flex-wrap:wrap; }
+    .btn { border:1px solid #577661; background:rgba(102,146,112,.15); color:var(--text); padding:11px 18px; border-radius:11px; min-height:46px; }
+    .btn.primary { color:#102018; border-color:#b8d5b5; background:linear-gradient(135deg,#c3ddbb,#a6c7a9); font-weight:700; }
+    .btn:disabled { opacity:.35; cursor:not-allowed; }
+    .btn:focus-visible, .key:focus-visible, .row-btn:focus-visible { outline:2px solid var(--gold); outline-offset:3px; }
+    .keyboard { display:grid; gap:7px; margin:22px 0; }
+    .key-row { display:flex; justify-content:center; gap:5px; }
+    .key { min-width:0; flex:1; max-width:62px; min-height:48px; border:1px solid #53685a; border-radius:8px; background:linear-gradient(180deg,#263a30,#172820); color:#e7eee3; box-shadow:0 3px 0 #09130f; font-family:Arial,sans-serif; font-size:clamp(12px,2.8vw,17px); }
+    .key.active-row { border-color:#b3d6ad; background:linear-gradient(180deg,#3d6148,#263e30); color:#eaffdf; }
+    .key.target { border-color:#e5d2a0; background:linear-gradient(180deg,#6d6241,#3b392a); color:#fff0bd; box-shadow:0 0 0 2px rgba(229,210,160,.12),0 3px 0 #09130f; }
+    .key.correct { border-color:#a8d7b4; background:#345844; }
+    .row-tools { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin:12px 0; }
+    .row-btn { border:1px solid var(--line); background:rgba(255,255,255,.035); color:var(--muted); border-radius:9px; padding:7px 12px; }
+    .row-btn.selected { border-color:var(--mint); color:var(--text); background:rgba(168,215,180,.12); }
+    .target-box { text-align:center; padding:18px; border:1px solid var(--line); border-radius:16px; background:rgba(3,12,9,.26); margin:18px 0; }
+    .target-letter { font-family:Arial,sans-serif; font-weight:700; font-size:clamp(54px,12vw,78px); line-height:1.25; color:var(--gold); }
+    .feedback { min-height:30px; color:var(--muted); text-align:center; margin:12px 0 0; }
+    .feedback.good { color:var(--mint); }
+    .feedback.try { color:var(--rose); }
+    .callout { border-left:3px solid #8db49a; padding:10px 14px; background:rgba(141,180,154,.08); color:#d6e4d7; border-radius:0 10px 10px 0; margin:16px 0; }
+    .finger-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:18px 0; }
+    .finger-card { border:1px solid var(--line); background:rgba(255,255,255,.025); border-radius:14px; padding:14px; }
+    .finger-card strong { color:var(--gold); }
+    .summary { border:1px solid var(--line); border-radius:14px; padding:16px; margin:20px 0; background:rgba(255,255,255,.025); }
+    .summary ul { margin:8px 0 0; padding-left:22px; }
+    .hidden { display:none !important; }
+    footer { text-align:center; color:#819789; font-size:12px; margin-top:18px; }
+    @media(max-width:560px) {
+      .shell { width:min(100% - 20px, 920px); padding-top:14px; }
+      header { margin-bottom:18px; }
+      .panel { border-radius:17px; padding:20px 16px; }
+      .key-row { gap:3px; }
+      .key { min-height:42px; border-radius:6px; }
+      .finger-grid { grid-template-columns:1fr; }
+      .btn-row .btn { flex:1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">✳</span>
+        <span><strong>Eden Keys</strong><small>桃源鍵境・新手導覽</small></span>
+      </a>
+      <a class="exit-link" href="practice.html">前往練習頁 ↗</a>
+    </header>
+
+    <div class="progress-wrap" aria-label="導覽進度">
+      <div class="progress-meta"><span id="step-label">第一章・踏入桃源</span><span id="step-count">01 / 04</span></div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+
+    <main class="panel">
+      <section class="screen" data-screen="0">
+        <div class="eyebrow">WELCOME TO EDEN KEYS</div>
+        <h1>在指尖之間，<br>慢慢找到自己的節奏。</h1>
+        <p class="muted">歡迎來到桃源鍵境。這趟旅程會從認識鍵盤開始，帶你一步步學會英文打字。</p>
+        <div class="welcome-art" aria-label="桃源山谷意境">
+          <div><div class="moon"></div><div class="mountains">⌁　山谷・薄霧・溪流　⌁</div><div class="muted">每一次練習，都是向前的一小步。</div></div>
+        </div>
+        <div class="steps"><span class="pill">不計時</span><span class="pill">答錯可重試</span><span class="pill">從零開始</span></div>
+        <p>你不需要先記住所有字母，也不用急著打得很快。我們會先認識鍵盤，再找到手指的起點。</p>
+        <div class="btn-row"><span></span><button class="btn primary" data-next>開始旅程 →</button></div>
+      </section>
+
+      <section class="screen hidden" data-screen="1">
+        <div class="eyebrow">01 / DISCOVER THE KEYBOARD</div>
+        <h1>先認識你的鍵盤</h1>
+        <p class="muted">英文鍵盤的字母不是按照 A、B、C 排列的。先看看它們分成哪三排，不必一次全部背起來。</p>
+        <div class="row-tools" aria-label="選擇要觀察的鍵盤列">
+          <button class="row-btn" data-row="top">上排 Q–P</button>
+          <button class="row-btn selected" data-row="home">中排 A–L</button>
+          <button class="row-btn" data-row="bottom">下排 Z–M</button>
+        </div>
+        <div class="keyboard" id="recognition-keyboard" aria-label="英文鍵盤字母示意">
+          <div class="key-row" data-key-row="top"></div>
+          <div class="key-row" data-key-row="home"></div>
+          <div class="key-row" data-key-row="bottom"></div>
+        </div>
+        <div class="callout" id="row-explanation">中排是 A、S、D、F、G、H、J、K、L。之後我們會先從這一排開始練習。</div>
+        <div class="target-box">
+          <div class="muted" id="recognition-prompt">小試身手 1 / 5：請按下 A</div>
+          <div class="target-letter" id="recognition-target">A</div>
+          <p class="muted">請按實體鍵盤上的按鍵；答錯可以再試一次。</p>
+          <div class="feedback" id="recognition-feedback" aria-live="polite">準備好就按 A。</div>
+        </div>
+        <div class="btn-row"><button class="btn" data-prev>← 上一步</button><button class="btn primary" id="to-fingers" disabled>認識定位點 →</button></div>
+      </section>
+
+      <section class="screen hidden" data-screen="2">
+        <div class="eyebrow">02 / FIND YOUR HOME</div>
+        <h1>找到你的定位點</h1>
+        <p class="muted">F 和 J 通常有小小的凸點，讓你不用一直低頭看鍵盤，也能摸到中排的位置。</p>
+        <div class="finger-grid">
+          <div class="finger-card"><strong>左手食指</strong><div>找到 <b>F</b>，輕輕摸摸按鍵上的凸點。</div></div>
+          <div class="finger-card"><strong>右手食指</strong><div>找到 <b>J</b>，感受它的定位凸點。</div></div>
+        </div>
+        <div class="keyboard" id="finger-keyboard" aria-label="F 和 J 定位鍵盤">
+          <div class="key-row" data-finger-row="top"></div>
+          <div class="key-row" data-finger-row="home"></div>
+          <div class="key-row" data-finger-row="bottom"></div>
+        </div>
+        <div class="target-box">
+          <div class="muted" id="finger-prompt">第一步：請按下 F</div>
+          <div class="target-letter" id="finger-target">F</div>
+          <div class="feedback" id="finger-feedback" aria-live="polite">先找到按鍵，再按兩次。</div>
+        </div>
+        <div class="callout">小提醒：網站能辨認你按了哪個鍵，但無法知道你實際用了哪根手指。請依照提示自行練習手指位置。</div>
+        <div class="btn-row"><button class="btn" data-prev>← 上一步</button><button class="btn primary" id="to-first-letters" disabled>試試第一批字母 →</button></div>
+      </section>
+
+      <section class="screen hidden" data-screen="3">
+        <div class="eyebrow">03 / YOUR FIRST LETTERS</div>
+        <h1>試著按下第一個字母</h1>
+        <p class="muted">接下來練習中排的幾個字母。先看提示，再慢慢找到按鍵；這段練習不計時，也不會影響正式成績。</p>
+        <div class="keyboard" id="first-keyboard" aria-label="中排字母練習鍵盤">
+          <div class="key-row" data-first-row="top"></div>
+          <div class="key-row" data-first-row="home"></div>
+          <div class="key-row" data-first-row="bottom"></div>
+        </div>
+        <div class="target-box">
+          <div class="muted" id="first-prompt">練習 1 / 9</div>
+          <div class="target-letter" id="first-target">F</div>
+          <p class="muted" id="first-hint">提示：試著用左手食指。</p>
+          <div class="feedback" id="first-feedback" aria-live="polite">請按下 F。</div>
+        </div>
+        <div class="btn-row"><button class="btn" data-prev>← 上一步</button><button class="btn primary hidden" id="finish-onboarding">完成導覽，進入森林初探 →</button></div>
+      </section>
+    </main>
+    <footer>EDEN KEYS · 慢慢練習，也是一種前進。</footer>
+  </div>
+
+  <script>
+    (() => {
+      const screens = [...document.querySelectorAll(".screen")];
+      const stepLabel = document.getElementById("step-label");
+      const stepCount = document.getElementById("step-count");
+      const progressFill = document.getElementById("progress-fill");
+      const titles = ["第一章・踏入桃源", "第二章・認識鍵盤", "第三章・找到定位", "第四章・初次練習"];
+      let currentScreen = 0;
+      let recognitionIndex = 0;
+      let fingerIndex = 0;
+      let firstIndex = 0;
+      let rowSelected = "home";
+      const recognitionSequence = ["A", "F", "J", "K", "D"];
+      const fingerSequence = ["F", "F", "J", "J"];
+      const firstSequence = ["F", "J", "D", "K", "A", "L", "S", "G", "H"];
+      const fingerCounts = {F: 0, J: 0};
+      const rowKeys = {
+        top: "QWERTYUIOP".split(""),
+        home: "ASDFGHJKL".split(""),
+        bottom: "ZXCVBNM".split("")
+      };
+      const fingerNames = {F:"左手食指", J:"右手食指", D:"左手中指", K:"右手中指", A:"左手小指", L:"右手無名指", S:"左手無名指", G:"左手食指", H:"右手食指"};
+
+      function renderKeyboard(containerId, rowAttr, activeRow = "home") {
+        const container = document.getElementById(containerId);
+        Object.keys(rowKeys).forEach(row => {
+          const rowEl = container.querySelector(`[${rowAttr}="${row}"]`);
+          rowEl.innerHTML = "";
+          rowKeys[row].forEach(letter => {
+            const key = document.createElement("div");
+            key.className = "key";
+            key.textContent = letter;
+            key.dataset.letter = letter;
+            if (row === activeRow) key.classList.add("active-row");
+            if (letter === "F" || letter === "J") key.title = "定位鍵";
+            rowEl.appendChild(key);
+          });
+        });
+      }
+      renderKeyboard("recognition-keyboard", "data-key-row");
+      renderKeyboard("finger-keyboard", "data-finger-row");
+      renderKeyboard("first-keyboard", "data-first-row");
+
+      function setTarget(containerId, letter, rowAttr) {
+        const container = document.getElementById(containerId);
+        container.querySelectorAll(".key").forEach(key => {
+          key.classList.toggle("target", key.dataset.letter === letter);
+          key.classList.remove("correct");
+        });
+      }
+      function showScreen(index) {
+        currentScreen = Math.max(0, Math.min(3, index));
+        screens.forEach((screen, i) => screen.classList.toggle("hidden", i !== currentScreen));
+        stepLabel.textContent = titles[currentScreen];
+        stepCount.textContent = `0${currentScreen + 1} / 04`;
+        progressFill.style.width = `${(currentScreen + 1) * 25}%`;
+        window.scrollTo({top: 0, behavior: "smooth"});
+      }
+      document.querySelectorAll("[data-next]").forEach(button => button.addEventListener("click", () => showScreen(currentScreen + 1)));
+      document.querySelectorAll("[data-prev]").forEach(button => button.addEventListener("click", () => showScreen(currentScreen - 1)));
+
+      const rowExplanations = {
+        top: "上排是 Q、W、E、R、T、Y、U、I、O、P。先知道它們在中排上方即可，不用立刻背起來。",
+        home: "中排是 A、S、D、F、G、H、J、K、L。之後我們會先從這一排開始練習。",
+        bottom: "下排是 Z、X、C、V、B、N、M。現在先認識它的位置，之後的關卡再慢慢學。"
+      };
+      document.querySelectorAll("[data-row]").forEach(button => {
+        button.addEventListener("click", () => {
+          rowSelected = button.dataset.row;
+          document.querySelectorAll("[data-row]").forEach(b => b.classList.toggle("selected", b === button));
+          document.getElementById("row-explanation").textContent = rowExplanations[rowSelected];
+          const kb = document.getElementById("recognition-keyboard");
+          kb.querySelectorAll(".key").forEach(key => key.classList.toggle("active-row", rowKeys[rowSelected].includes(key.dataset.letter)));
+        });
+      });
+      function updateRecognition() {
+        const target = recognitionSequence[recognitionIndex];
+        document.getElementById("recognition-prompt").textContent = `小試身手 ${recognitionIndex + 1} / ${recognitionSequence.length}：請按下 ${target}`;
+        document.getElementById("recognition-target").textContent = target;
+        document.getElementById("recognition-feedback").textContent = `找到 ${target}，再按下實體鍵盤上的按鍵。`;
+        setTarget("recognition-keyboard", target, "data-key-row");
+      }
+      updateRecognition();
+
+      function updateFinger() {
+        const target = fingerSequence[fingerIndex];
+        document.getElementById("finger-prompt").textContent = `定位練習 ${fingerIndex + 1} / ${fingerSequence.length}：請按下 ${target}`;
+        document.getElementById("finger-target").textContent = target;
+        document.getElementById("finger-feedback").textContent = `請找到 ${target}，再按下兩次練習定位。`;
+        setTarget("finger-keyboard", target, "data-finger-row");
+      }
+      updateFinger();
+
+      function updateFirst() {
+        const target = firstSequence[firstIndex];
+        document.getElementById("first-prompt").textContent = `練習 ${firstIndex + 1} / ${firstSequence.length}`;
+        document.getElementById("first-target").textContent = target;
+        document.getElementById("first-hint").textContent = `提示：${fingerNames[target] || "找到對應按鍵"}。慢慢來，不用計時。`;
+        document.getElementById("first-feedback").textContent = `請按下 ${target}。`;
+        setTarget("first-keyboard", target, "data-first-row");
+      }
+      updateFirst();
+
+      document.addEventListener("keydown", event => {
+        if (event.ctrlKey || event.altKey || event.metaKey || event.repeat) return;
+        const key = event.key.length === 1 ? event.key.toUpperCase() : "";
+        if (!/^[A-Z]$/.test(key)) return;
+        if (currentScreen === 1) {
+          const feedback = document.getElementById("recognition-feedback");
+          if (key !== recognitionSequence[recognitionIndex]) {
+            feedback.textContent = `沒關係，再找找 ${recognitionSequence[recognitionIndex]}。`;
+            feedback.className = "feedback try";
+            return;
+          }
+          document.querySelector(`#recognition-keyboard [data-letter="${key}"]`)?.classList.add("correct");
+          recognitionIndex++;
+          if (recognitionIndex >= recognitionSequence.length) {
+            document.getElementById("recognition-prompt").textContent = "鍵盤初體驗完成！";
+            document.getElementById("recognition-target").textContent = "✓";
+            feedback.textContent = "做得好！你已經找到幾個常用按鍵。";
+            feedback.className = "feedback good";
+            document.getElementById("to-fingers").disabled = false;
+          } else {
+            feedback.textContent = "正確！繼續下一個字母。";
+            feedback.className = "feedback good";
+            updateRecognition();
+          }
+        } else if (currentScreen === 2) {
+          const target = fingerSequence[fingerIndex];
+          const feedback = document.getElementById("finger-feedback");
+          if (key !== target) {
+            feedback.textContent = `再試一次，這一步要找的是 ${target}。`;
+            feedback.className = "feedback try";
+            return;
+          }
+          fingerCounts[target]++;
+          fingerIndex++;
+          if (fingerIndex >= fingerSequence.length) {
+            document.getElementById("finger-prompt").textContent = "定位練習完成！";
+            document.getElementById("finger-target").textContent = "✓";
+            feedback.textContent = "很好！記得讓左手食指回到 F，右手食指回到 J。";
+            feedback.className = "feedback good";
+            document.getElementById("to-first-letters").disabled = false;
+          } else {
+            feedback.textContent = "找到了！再跟著下一個提示練習。";
+            feedback.className = "feedback good";
+            updateFinger();
+          }
+        } else if (currentScreen === 3 && firstIndex < firstSequence.length) {
+          const target = firstSequence[firstIndex];
+          const feedback = document.getElementById("first-feedback");
+          if (key !== target) {
+            feedback.textContent = `沒關係，再找找 ${target}。你可以看上方提示。`;
+            feedback.className = "feedback try";
+            return;
+          }
+          document.querySelector(`#first-keyboard [data-letter="${key}"]`)?.classList.add("correct");
+          firstIndex++;
+          if (firstIndex >= firstSequence.length) {
+            document.getElementById("first-prompt").textContent = "新手練習完成";
+            document.getElementById("first-target").textContent = "✓";
+            document.getElementById("first-hint").textContent = "你已經完成第一批字母的練習。";
+            feedback.textContent = "太好了！準備好進入森林初探了。";
+            feedback.className = "feedback good";
+            document.getElementById("finish-onboarding").classList.remove("hidden");
+          } else {
+            feedback.textContent = "正確！慢慢來，繼續下一個。";
+            feedback.className = "feedback good";
+            updateFirst();
+          }
+        }
+      });
+
+      document.getElementById("to-fingers").addEventListener("click", () => showScreen(2));
+      document.getElementById("to-first-letters").addEventListener("click", () => showScreen(3));
+      document.getElementById("finish-onboarding").addEventListener("click", () => {
+        window.location.href = "practice.html";
+      });
+    })();
+  </script>
+</body>
+</html>
