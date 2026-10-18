@@ -151,3 +151,78 @@ body {
     font-size: 14px;
   }
 }
+
+
+/* ===== Eden-Keys：左右手鍵盤分區 ===== */
+
+/* 左手按鍵：柔和森林綠 */
+.keyboard-key[data-key="Q"],
+.keyboard-key[data-key="W"],
+.keyboard-key[data-key="E"],
+.keyboard-key[data-key="R"],
+.keyboard-key[data-key="T"],
+.keyboard-key[data-key="A"],
+.keyboard-key[data-key="S"],
+.keyboard-key[data-key="D"],
+.keyboard-key[data-key="F"],
+.keyboard-key[data-key="G"],
+.keyboard-key[data-key="Z"],
+.keyboard-key[data-key="X"],
+.keyboard-key[data-key="C"],
+.keyboard-key[data-key="V"],
+.keyboard-key[data-key="B"] {
+  background-color: #e3eee4;
+  color: #294b3b;
+  border: 1px solid #c4d8c7;
+}
+
+/* 右手按鍵：淡雅桃花粉 */
+.keyboard-key[data-key="Y"],
+.keyboard-key[data-key="U"],
+.keyboard-key[data-key="I"],
+.keyboard-key[data-key="O"],
+.keyboard-key[data-key="P"],
+.keyboard-key[data-key="H"],
+.keyboard-key[data-key="J"],
+.keyboard-key[data-key="K"],
+.keyboard-key[data-key="L"],
+.keyboard-key[data-key="N"],
+.keyboard-key[data-key="M"] {
+  background-color: #f7e4ec;
+  color: #704456;
+  border: 1px solid #e8c7d5;
+}
+
+/* 目前目標按鍵：清楚的森林綠 */
+.keyboard-key.target {
+  background-color: #527b65;
+  color: #ffffff;
+  border: 2px solid #315d45;
+  box-shadow: 0 0 0 4px rgba(82, 123, 101, 0.18);
+  transform: translateY(-3px);
+  position: relative;
+  z-index: 1;
+}
+
+/* 答對：柔和綠色回饋 */
+.keyboard-key.pressed {
+  background-color: #b8d9bd;
+  color: #21472f;
+  border-color: #78a982;
+}
+
+/* 答錯：柔和紅粉色回饋 */
+.keyboard-key.wrong {
+  background-color: #f4c8ce;
+  color: #7c2837;
+  border-color: #d98b98;
+}
+
+/* 鍵盤按鈕的平滑效果 */
+.keyboard-key {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
