@@ -362,3 +362,99 @@ body {
   outline: 2px solid #b8d1ad;
   outline-offset: 3px;
 }
+
+
+/* ===== Eden-Keys：森林遺跡 UI ===== */
+
+/* 練習卡片：增加細緻的內框 */
+.practice-card {
+  position: relative;
+  isolation: isolate;
+  border-color: rgba(151, 174, 144, 0.34);
+}
+
+/* 卡片四周的柔和內框光 */
+.practice-card::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(174, 156, 111, 0.14);
+  border-radius: 14px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* 任務提示面板 */
+.finger-guide {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(42, 61, 49, 0.96),
+      rgba(25, 38, 33, 0.96)
+    );
+  border: 1px solid rgba(143, 168, 132, 0.3);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* 提示文字中的重點 */
+.finger-guide strong,
+.finger-guide b {
+  color: #c7d8b5;
+}
+
+/* 一般按鈕：柔和的古銅色邊緣 */
+.practice-card button:not(.keyboard-key) {
+  border-color: rgba(169, 157, 117, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.045),
+    0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* 滑鼠移上按鈕 */
+.practice-card button:not(.keyboard-key):hover {
+  border-color: #b9b08b;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 5px 18px rgba(112, 139, 100, 0.18);
+}
+
+/* 進度條：支援常見的原生 progress 元素 */
+.practice-card progress {
+  width: 100%;
+  height: 10px;
+  appearance: none;
+  -webkit-appearance: none;
+  overflow: hidden;
+  border: 1px solid #48594a;
+  border-radius: 999px;
+  background: #17221d;
+}
+
+/* Chrome、Edge、Safari 的進度條底色 */
+.practice-card progress::-webkit-progress-bar {
+  background: #17221d;
+  border-radius: 999px;
+}
+
+/* 已完成部分 */
+.practice-card progress::-webkit-progress-value {
+  background: linear-gradient(
+    90deg,
+    #536f58,
+    #a6bb8b
+  );
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+/* Firefox 的已完成部分 */
+.practice-card progress::-moz-progress-bar {
+  background: linear-gradient(
+    90deg,
+    #536f58,
+    #a6bb8b
+  );
+  border-radius: 999px;
+}
