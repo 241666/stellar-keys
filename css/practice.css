@@ -1,0 +1,85 @@
+
+/* Eden-Keys practice page */
+.practice-card {
+  width: min(100%, 900px);
+}
+
+.keyboard-full {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+  margin: 24px auto;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.keyboard-key {
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  padding: 8px 2px;
+  border: 1px solid #d5dfd3;
+  border-radius: 8px;
+  background: #f5f5ed;
+  color: #29483e;
+  font: inherit;
+  font-size: clamp(11px, 2vw, 17px);
+  box-shadow: 0 3px 0 #d5dfd3;
+  cursor: default;
+}
+
+.keyboard-key.target {
+  background: #dcebd9;
+  border: 2px solid #527b65;
+  box-shadow: 0 3px 0 #527b65;
+}
+
+.keyboard-key.pressed {
+  background: #c5e4c6;
+  border-color: #527b65;
+}
+
+.keyboard-key.wrong {
+  background: #fbe7df;
+  border-color: #d98f80;
+}
+
+.keyboard-key.wide {
+  flex: 1.8;
+}
+
+.keyboard-key.space {
+  flex: 5;
+}
+
+.finger-guide {
+  padding: 12px;
+  border-radius: 12px;
+  background: #edf2e8;
+  color: #29483e;
+  line-height: 1.8;
+}
+
+.practice-feedback {
+  min-height: 28px;
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .keyboard-full {
+    gap: 5px;
+  }
+
+  .keyboard-row {
+    gap: 3px;
+  }
+
+  .keyboard-key {
+    min-height: 38px;
+    border-radius: 5px;
+  }
+}
