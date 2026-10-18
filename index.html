@@ -1,1 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <meta
+    name="description"
+    content="Eden Keys 桃源鍵境：在靜謐的桃源世界中探索英文打字，練習指法，收集屬於你的風景。"
+  >
+
+  <meta name="theme-color" content="#102e2b">
+
+  <title>Eden Keys｜桃源鍵境</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Eden Keys 首頁">
+      <span class="brand-mark" aria-hidden="true">✳</span>
+      <span class="brand-copy">
+        <strong>Eden Keys</strong>
+        <small>桃源鍵境</small>
+      </span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      id="menu-toggle"
+      type="button"
+      aria-label="開啟導覽選單"
+      aria-expanded="false"
+      aria-controls="site-nav"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav" aria-label="主要導覽">
+      <a href="#world">桃源世界</a>
+      <a href="#journey">修習旅程</a>
+      <a href="#collection">珍藏風景</a>
+      <a class="nav-cta" href="#begin">開始探索 <span>↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section-shell" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow">
+          <span class="status-dot"></span>
+          YOUR NEXT CHAPTER BEGINS HERE
+        </div>
+
+        <p class="hero-kicker">在指尖之間，遇見一座桃花源</p>
+
+        <h1>
+          Eden
+          <span class="title-second-line">Keys<span class="title-period">.</span></span>
+        </h1>
+
+        <p class="hero-description">
+          穿過薄霧，沿著溪流前行。
+          在一字一句的練習之中，尋回自己的節奏，
+          慢慢拼湊出只屬於你的桃源風景。
+        </p>
+
+        <div class="hero-actions" id="begin">
+          <a class="button button-primary" href="#journey">
+            <span>踏入桃源</span>
+            <span class="button-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="button button-quiet" href="#world">
+            <span class="play-icon" aria-hidden="true">▷</span>
+            認識這個世界
+          </a>
+        </div>
+
+        <div class="hero-note">
+          <span class="note-line"></span>
+          <span>A keyboard exploration adventure</span>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-label="桃源意境插畫">
+        <div class="art-orbit orbit-one"></div>
+        <div class="art-orbit orbit-two"></div>
+
+        <div class="moon"></div>
+
+        <div class="art-label label-top">
+          <span>01 / DISCOVER</span>
+          <span>探索未知</span>
+        </div>
+
+        <svg
+          class="landscape"
+          viewBox="0 0 620 690"
+          role="img"
+          aria-label="青綠山谷、桃花樹與流向遠方的溪流"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#b9cbb5" />
+              <stop offset="50%" stop-color="#789e8a" />
+              <stop offset="100%" stop-color="#315f56" />
+            </linearGradient>
+
+            <linearGradient id="mountain" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#a4bca3" />
+              <stop offset="100%" stop-color="#547f70" />
+            </linearGradient>
+
+            <linearGradient id="water" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#b8d9cb" />
+              <stop offset="50%" stop-color="#e0e6ce" />
+              <stop offset="100%" stop-color="#8cb9a9" />
+            </linearGradient>
+
+            <clipPath id="art-clip">
+              <rect x="0" y="0" width="620" height="690" rx="300" />
+            </clipPath>
+          </defs>
+
+          <g clip-path="url(#art-clip)">
+            <rect width="620" height="690" fill="url(#sky)" />
+
+            <circle cx="395" cy="175" r="100" fill="#e5d9b7" opacity=".13" />
+            <circle cx="395" cy="175" r="65" fill="#f3e9c9" opacity=".65" />
+
+            <path
+              d="M0 310 L85 205 L150 260 L255 115 L365 275
+                 L445 190 L550 285 L620 215 L620 690 L0 690 Z"
+              fill="url(#mountain)"
+            />
+
+            <path
+              d="M0 385 L95 295 L165 350 L275 245 L375 365
+                 L470 270 L620 380 L620 690 L0 690 Z"
+              fill="#557e6b"
+            />
+
+            <path
+              d="M0 445 Q115 350 235 415
+                 T465 400 Q550 390 620 445
+                 L620 690 L0 690 Z"
+              fill="#315c50"
+            />
+
+            <path
+              d="M0 490 Q105 420 225 470
+                 T420 475 Q520 450 620 495
+                 L620 690 L0 690 Z"
+              fill="#23483f"
+            />
+
+            <path
+              d="M265 690
+                 C340 615 400 580 360 520
+                 C330 470 290 465 310 420
+                 C330 390 360 390 380 365
+                 C350 390 300 380 285 415
+                 C250 470 315 495 330 535
+                 C350 585 260 620 205 690 Z"
+              fill="url(#water)"
+              opacity=".92"
+            />
+
+            <path
+              d="M285 690
+                 C350 620 385 575 350 535
+                 C325 505 310 480 335 445"
+              fill="none"
+              stroke="#f1efd9"
+              stroke-width="3"
+              opacity=".65"
+            />
+
+            <g class="tree tree-left">
+              <path
+                d="M100 500 Q110 410 125 340
+                   M120 420 L80 375 M119 395 L160 350"
+                fill="none"
+                stroke="#3e5944"
+                stroke-width="12"
+                stroke-linecap="round"
+              />
+              <circle cx="93" cy="355" r="52" fill="#dca9a9" opacity=".85" />
+              <circle cx="135" cy="330" r="60" fill="#edc5b5" opacity=".9" />
+              <circle cx="163" cy="375" r="45" fill="#d48d91" opacity=".85" />
+              <circle cx="75" cy="400" r="36" fill="#f0d5c3" opacity=".85" />
+              <circle cx="135" cy="380" r="26" fill="#f4d8c8" opacity=".8" />
+            </g>
+
+            <g class="tree tree-right">
+              <path
+                d="M500 535 Q490 450 510 365
+                   M500 440 L460 405 M500 410 L545 370"
+                fill="none"
+                stroke="#3e5944"
+                stroke-width="11"
+                stroke-linecap="round"
+              />
+              <circle cx="465" cy="365" r="48" fill="#dca9a9" opacity=".8" />
+              <circle cx="515" cy="335" r="57" fill="#f0c7b7" opacity=".92" />
+              <circle cx="548" cy="380" r="42" fill="#d48d91" opacity=".85" />
+              <circle cx="490" cy="395" r="35" fill="#eddbcb" opacity=".8" />
+            </g>
+
+            <g fill="#f7e3d0" opacity=".9">
+              <circle cx="190" cy="390" r="4" />
+              <circle cx="220" cy="440" r="3" />
+              <circle cx="450" cy="450" r="4" />
+              <circle cx="395" cy="330" r="3" />
+              <circle cx="160" cy="285" r="3" />
+              <circle cx="420" cy="505" r="4" />
+              <circle cx="250" cy="330" r="2" />
+              <circle cx="550" cy="285" r="3" />
+            </g>
+
+            <g fill="#e3e7d4" opacity=".3">
+              <ellipse cx="310" cy="300" rx="240" ry="18" />
+              <ellipse cx="300" cy="460" rx="280" ry="13" />
+              <ellipse cx="320" cy="555" rx="260" ry="15" />
+            </g>
+          </g>
+        </svg>
+
+        <div class="art-label label-bottom">
+          <span class="label-symbol">✳</span>
+          <span>
+            <strong>THE PEACHBLOSSOM REALM</strong>
+            <small>一場關於專注與發現的旅程</small>
+          </span>
+        </div>
+
+        <span class="floating-petal petal-one" aria-hidden="true">✿</span>
+        <span class="floating-petal petal-two" aria-hidden="true">✿</span>
+        <span class="floating-petal petal-three" aria-hidden="true">✧</span>
+      </div>
+
+      <div class="hero-index">
+        <span>01</span>
+        <span class="index-rule"></span>
+        <span>THE BEGINNING</span>
+      </div>
+    </section>
+
+    <section class="intro-strip">
+      <p>NOT A RACE. <span>YOUR OWN RHYTHM.</span></p>
+      <p>不是追趕速度，而是找回自己的節奏。</p>
+    </section>
+
+    <section class="world-section section-shell" id="world">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">A WORLD WAITING FOR YOU</p>
+          <h2>世界，正等待你慢慢探索。</h2>
+        </div>
+
+        <p class="section-description">
+          每一次練習，都是向桃源深處邁出的一小步。
+          從熟悉鍵盤開始，讓新的風景逐漸顯現。
+        </p>
+      </div>
+
+      <div class="world-grid">
+        <article class="world-card card-forest">
+          <div class="card-number">01 / THE GROVE</div>
+          <div class="card-art forest-art" aria-hidden="true">
+            <span class="forest-moon"></span>
+            <span class="forest-tree tree-a"></span>
+            <span class="forest-tree tree-b"></span>
+            <span class="forest-tree tree-c"></span>
+            <span class="forest-ground"></span>
+          </div>
+          <div class="card-content">
+            <span class="card-tag">BEGIN YOUR PRACTICE</span>
+            <h3>桃林初徑</h3>
+            <p>從基礎按鍵開始，慢慢建立指尖的方向感。</p>
+            <a href="#journey" class="text-link">了解修習旅程 <span>↗</span></a>
+          </div>
+        </article>
+
+        <article class="world-card card-river">
+          <div class="card-number">02 / THE STREAM</div>
+          <div class="card-art river-art" aria-hidden="true">
+            <span class="river-hill hill-a"></span>
+            <span class="river-hill hill-b"></span>
+            <span class="river-path"></span>
+            <span class="river-star">✧</span>
+          </div>
+          <div class="card-content">
+            <span class="card-tag">FIND YOUR RHYTHM</span>
+            <h3>流泉之谷</h3>
+            <p>讓單字與句子串起來，逐漸找到自然的打字節奏。</p>
+            <a href="#journey" class="text-link">探索學習方式 <span>↗</span></a>
+          </div>
+        </article>
+
+        <article class="world-card card-garden">
+          <div class="card-number">03 / THE GARDEN</div>
+          <div class="card-art garden-art" aria-hidden="true">
+            <span class="garden-sun"></span>
+            <span class="garden-flower flower-a">✿</span>
+            <span class="garden-flower flower-b">✿</span>
+            <span class="garden-flower flower-c">✿</span>
+            <span class="garden-leaf leaf-a"></span>
+            <span class="garden-leaf leaf-b"></span>
+          </div>
+          <div class="card-content">
+            <span class="card-tag">KEEP YOUR MEMORIES</span>
+            <h3>星庭秘境</h3>
+            <p>把努力化為風景，逐步收藏屬於你的桃源拼圖。</p>
+            <a href="#collection" class="text-link">看看珍藏計畫 <span>↗</span></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="journey-section" id="journey">
+      <div class="section-shell journey-layout">
+        <div class="journey-copy">
+          <p class="eyebrow">SMALL STEPS, NEW HORIZONS</p>
+          <h2>不必一下子<br>抵達遠方。</h2>
+          <p>
+            先認識鍵盤，再練習單字，接著寫下句子。
+            每一個階段都可以依照自己的步調前進，
+            不需要和任何人比較。
+          </p>
+          <a class="button button-light" href="#begin">
+            從首頁開始 <span class="button-arrow">↗</span>
+          </a>
+        </div>
+
+        <div class="journey-steps">
+          <article class="step-item">
+            <span class="step-number">01</span>
+            <div>
+              <span class="step-label">THE FIRST TOUCH</span>
+              <h3>認識指尖</h3>
+              <p>從 F 與 J 出發，認識基準鍵與手指位置。</p>
+            </div>
+            <span class="step-icon" aria-hidden="true">⌨</span>
+          </article>
+
+          <article class="step-item">
+            <span class="step-number">02</span>
+            <div>
+              <span class="step-label">WORDS TAKE SHAPE</span>
+              <h3>讓單字成形</h3>
+              <p>從簡單短字開始，累積準確度與信心。</p>
+            </div>
+            <span class="step-icon" aria-hidden="true">Aa</span>
+          </article>
+
+          <article class="step-item">
+            <span class="step-number">03</span>
+            <div>
+              <span class="step-label">FIND YOUR FLOW</span>
+              <h3>寫下自己的節奏</h3>
+              <p>練習句子與短文，慢慢發現自己的進步。</p>
+            </div>
+            <span class="step-icon" aria-hidden="true">〰</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="collection-section section-shell" id="collection">
+      <div class="collection-art" aria-hidden="true">
+        <div class="collection-glow"></div>
+        <div class="puzzle puzzle-one">✧</div>
+        <div class="puzzle puzzle-two">✿</div>
+        <div class="puzzle puzzle-three">⌁</div>
+        <div class="puzzle puzzle-four">✦</div>
+        <div class="collection-ring"></div>
+      </div>
+
+      <div class="collection-copy">
+        <p class="eyebrow">A LITTLE PIECE OF YOUR WORLD</p>
+        <h2>把每一次努力，<br>拼成一片風景。</h2>
+        <p>
+          未來，每次完成修習都能逐步收集拼圖碎片。
+          當碎片慢慢拼合，桃林、溪谷與星庭的樣貌
+          也將一點一滴地完整起來。
+        </p>
+        <div class="collection-note">
+          <span class="note-star">✳</span>
+          <span>你的旅程，值得被好好珍藏。</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="cta-inner">
+        <span class="cta-symbol" aria-hidden="true">✳</span>
+        <p class="eyebrow">YOUR JOURNEY STARTS WITH ONE KEY</p>
+        <h2>準備好，踏入桃源了嗎？</h2>
+        <p>不求一步登天，只要今天比昨天更熟悉一點。</p>
+        <a class="button button-primary" href="#home">
+          回到桃源入口 <span class="button-arrow">↑</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="footer-brand" href="#home">✳ EDEN KEYS</a>
+    <p>桃源鍵境 · A little progress, a little wonder.</p>
+    <a href="#home" class="back-top">BACK TO TOP ↑</a>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
