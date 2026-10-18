@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#173d35">
+  <title>打字練習｜Eden-Keys</title>
+
+  <style>
+    :root {
+      --forest: #173d35;
+      --leaf: #527b65;
+      --cream: #f7f4e9;
+      --peach: #e9b9a6;
+      --text: #29483e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 24px;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(ellipse at top, #dce8d9, transparent 60%),
+        var(--cream);
+      color: var(--text);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    }
+
+    .practice-card {
+      width: min(100%, 620px);
+      padding: clamp(24px, 5vw, 44px);
+      text-align: center;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid #d9e3d5;
+      border-radius: 24px;
+      box-shadow: 0 18px 55px #173d3512;
+    }
+
+    .brand {
+      margin: 0;
+      color: var(--leaf);
+      font-size: 14px;
+      letter-spacing: 3px;
+    }
+
+    h1 {
+      margin: 12px 0;
+      color: var(--forest);
+      font-size: clamp(28px, 6vw, 40px);
+    }
+
+    .description {
+      color: #718078;
+      line-height: 1.8;
+    }
+
+    .progress {
+      margin: 28px 0 8px;
+      font-size: 14px;
+      color: #718078;
+    }
+
+    .target {
+      margin: 12px 0;
+      color: var(--forest);
+      font-size: clamp(76px, 18vw, 112px);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .hint {
+      min-height: 28px;
+      margin: 12px 0 22px;
+      color: var(--leaf);
+      font-size: 15px;
+    }
+
+    .keyboard {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin: 28px 0;
+    }
+
+    .key {
+      width: 76px;
+      height: 76px;
+      display: grid;
+      place-items: center;
+      border: 2px solid #d5dfd3;
+      border-radius: 14px;
+      background: #f5f5ed;
+      color: var(--forest);
+      font-size: 28px;
+      font-weight: 700;
+      box-shadow: 0 4px 0 #d5dfd3;
+    }
+
+    .key.active {
+      border-color: var(--leaf);
+      background: #dcebd9;
+      transform: translateY(-3px);
+      box-shadow: 0 7px 0 #b6cdb5;
+    }
+
+    .key.correct {
+      border-color: #75a77d;
+      background: #e0f0df;
+    }
+
+    .key.wrong {
+      border-color: #d98f80;
+      background: #fbe7df;
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    button {
+      padding: 12px 22px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--forest);
+      color: white;
+      font: inherit;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    button:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    button.secondary {
+      background: #e7ece2;
+      color: var(--forest);
+    }
+
+    .stats {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid #e1e7dc;
+      color: #718078;
+      font-size: 14px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 24px;
+      color: var(--leaf);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="practice-card">
+    <p class="brand">EDEN-KEYS</p>
+    <h1>森林鍵位練習</h1>
+    <p class="description">
+      先找到鍵盤上的定位鍵，<br>
+      慢慢來，讓手指熟悉自己的位置。
+    </p>
+
+    <p class="progress" id="progress">準備開始你的第一次練習</p>
+    <div class="target" id="target">F</div>
+    <p class="hint" id="hint" aria-live="polite">
+      找到鍵盤上的 F 鍵，準備好了就開始吧！
+    </p>
+
+    <div class="keyboard" aria-label="虛擬鍵盤">
+      <div class="key active" id="key-f">F</div>
+      <div class="key" id="key-j">J</div>
+    </div>
+
+    <div class="button-row">
+      <button id="start-button">開始練習</button>
+      <button id="restart-button" class="secondary" hidden>
+        再練一次
+      </button>
+    </div>
+
+    <div class="stats" id="stats" aria-live="polite">
+      完成 10 題，熟悉 F 與 J 定位鍵。
+    </div>
+
+    <a class="back-link" href="index.html">← 回到 Eden-Keys 首頁</a>
+  </main>
+
+  <script src="js/game.js"></script>
+</body>
+</html>
