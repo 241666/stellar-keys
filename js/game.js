@@ -1,14 +1,23 @@
+
 const targetElement = document.getElementById("target");
 const progressElement = document.getElementById("progress");
 const hintElement = document.getElementById("hint");
 const statsElement = document.getElementById("stats");
 const startButton = document.getElementById("start-button");
 const restartButton = document.getElementById("restart-button");
-
-const keyF = document.getElementById("key-f");
-const keyJ = document.getElementById("key-j");
+const keyboard = document.getElementById("keyboard");
+const fingerGuide = document.getElementById("finger-guide");
+const feedback = document.getElementById("practice-feedback");
 
 const TOTAL_QUESTIONS = 10;
+const questions = ["F", "J", "D", "K", "S", "L", "A", ";", "G", "H"];
+
+const fingerTips = {
+  A: "左手小指", S: "左手無名指", D: "左手中指",
+  F: "左手食指", G: "左手食指",
+  H: "右手食指", J: "右手食指",
+  K: "右手中指", L: "右手無名指", ";": "右手小指"
+};
 
 let currentQuestion = 0;
 let correctCount = 0;
@@ -16,23 +25,25 @@ let wrongCount = 0;
 let isPlaying = false;
 let targetKey = "F";
 
-function showTarget() {
-  targetKey = Math.random() < 0.5 ? "F" : "J";
+function renderKeyboard() {
+  keyboard.querySelectorAll("[data-key]").forEach((keyButton) => {
+    const key = keyButton.dataset.key;
+    keyButton.classList.toggle("target", key === targetKey);
+    keyButton.classList.remove("pressed", "wrong");
+  });
+}
 
+function showTarget() {
+  targetKey = questions[currentQuestion];
   targetElement.textContent = targetKey;
   progressElement.textContent =
     `練習進度：${currentQuestion + 1} / ${TOTAL_QUESTIONS}`;
 
-  keyF.classList.toggle("active", targetKey === "F");
-  keyJ.classList.toggle("active", targetKey === "J");
+  hintElement.textContent = `請按下 ${targetKey} 鍵。`;
+  fingerGuide.textContent =
+    `手指提示：${fingerTips[targetKey] || "請依照鍵盤位置練習"}`;
 
-  keyF.classList.remove("correct", "wrong");
-  keyJ.classList.remove("correct", "wrong");
-
-  hintElement.textContent =
-    targetKey === "F"
-      ? "請用左手食指按下 F 鍵。"
-      : "請用右手食指按下 J 鍵。";
+  renderKeyboard();
 }
 
 function startGame() {
@@ -43,70 +54,67 @@ function startGame() {
 
   startButton.hidden = true;
   restartButton.hidden = true;
-
-  statsElement.textContent = "加油！按照提示，一題一題完成。";
+  statsElement.textContent = "專心練習，不必急著追求速度！";
+  feedback.textContent = "";
 
   showTarget();
 }
 
 function finishGame() {
   isPlaying = false;
-
   targetElement.textContent = "🌿";
   progressElement.textContent = "練習完成！";
-  hintElement.textContent = "每一次練習，都是熟悉鍵盤的一小步。";
+  hintElement.textContent = "做得很好！你完成了這一輪。";
+  fingerGuide.textContent = "下一步：繼續熟悉主列按鍵。";
 
-  keyF.classList.remove("active");
-  keyJ.classList.remove("active");
-
-  const accuracy =
-    Math.round((correctCount / (correctCount + wrongCount)) * 100) || 0;
+  const total = correctCount + wrongCount;
+  const accuracy = total ? Math.round(correctCount / total * 100) : 0;
 
   statsElement.textContent =
-    `答對 ${correctCount} 題｜錯誤 ${wrongCount} 次｜正確率 ${accuracy}%`;
+    `答對 ${correctCount} 次｜錯誤 ${wrongCount} 次｜正確率 ${accuracy}%`;
 
   restartButton.hidden = false;
+  feedback.textContent = "🌸 恭喜完成森林鍵位練習！";
 }
 
-document.addEventListener("keydown", (event) => {
+function handleKey(key) {
   if (!isPlaying) return;
 
-  // 避免按住按鍵時，瀏覽器重複觸發多次
-  if (event.repeat) return;
+  const pressed = key.toUpperCase();
+  if (!/^[A-Z;]$/.test(pressed)) return;
 
-  const pressedKey = event.key.toUpperCase();
+  const keyButton = keyboard.querySelector(`[data-key="${pressed}"]`);
 
-  // 只處理 F 與 J，其他按鍵不影響進度
-  if (pressedKey !== "F" && pressedKey !== "J") return;
-
-  if (pressedKey === targetKey) {
+  if (pressed === targetKey) {
     correctCount++;
-
-    const currentKey = targetKey === "F" ? keyF : keyJ;
-    currentKey.classList.add("correct");
-
-    hintElement.textContent = "答對了！做得很好！";
-
     currentQuestion++;
 
+    if (keyButton) keyButton.classList.add("pressed");
+    feedback.textContent = "答對了！";
+
     if (currentQuestion >= TOTAL_QUESTIONS) {
-      setTimeout(finishGame, 350);
+      setTimeout(finishGame, 250);
     } else {
-      setTimeout(showTarget, 350);
+      setTimeout(showTarget, 250);
     }
   } else {
     wrongCount++;
+    if (keyButton) keyButton.classList.add("wrong");
 
-    const pressedElement = pressedKey === "F" ? keyF : keyJ;
-    pressedElement.classList.add("wrong");
-
-    hintElement.textContent =
-      `再試一次！這一題要按 ${targetKey} 鍵。`;
-
-    setTimeout(() => {
-      pressedElement.classList.remove("wrong");
-    }, 350);
+    feedback.textContent = `再試一次！這題要按 ${targetKey}。`;
+    hintElement.textContent = `請找出 ${targetKey} 鍵，再試一次。`;
   }
+}
+
+document.addEventListener("keydown", (event) => {
+  if (event.repeat) return;
+  if (event.ctrlKey || event.altKey || event.metaKey) return;
+  handleKey(event.key);
+});
+
+keyboard.addEventListener("click", (event) => {
+  const keyButton = event.target.closest("[data-key]");
+  if (keyButton) handleKey(keyButton.dataset.key);
 });
 
 startButton.addEventListener("click", startGame);
