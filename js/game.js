@@ -9,8 +9,8 @@ const keyboard = document.getElementById("keyboard");
 const fingerGuide = document.getElementById("finger-guide");
 const feedback = document.getElementById("practice-feedback");
 
-const TOTAL_QUESTIONS = 10;
 const questions = ["F", "J", "D", "K", "S", "L", "A", "G", "H"];
+const TOTAL_QUESTIONS = questions.length;
 
 const fingerTips = {
   A: "左手小指", S: "左手無名指", D: "左手中指",
