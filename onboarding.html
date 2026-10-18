@@ -371,8 +371,10 @@
       document.getElementById("to-fingers").addEventListener("click", () => showScreen(2));
       document.getElementById("to-first-letters").addEventListener("click", () => showScreen(3));
       document.getElementById("finish-onboarding").addEventListener("click", () => {
-        window.location.href = "practice.html";
-      });
+      localStorage.setItem("edenKeysOnboardingCompleted", "true");
+      window.location.href = "practice.html";
+    });
+
     })();
   </script>
 </body>
