@@ -12,11 +12,18 @@ const feedback = document.getElementById("practice-feedback");
 const questions = ["F", "J", "D", "K", "S", "L", "A", "G", "H"];
 const TOTAL_QUESTIONS = questions.length;
 
+
 const fingerTips = {
-  A: "左手小指", S: "左手無名指", D: "左手中指",
-  F: "左手食指", G: "左手食指",
-  H: "右手食指", J: "右手食指",
-  K: "右手中指", L: "右手無名指", ";": "右手小指"
+  A: "左手小指｜請用左手小指按下 A 鍵。",
+  S: "左手無名指｜請用左手無名指按下 S 鍵。",
+  D: "左手中指｜請用左手中指按下 D 鍵。",
+  F: "左手食指｜請用左手食指按下 F 鍵，並留意定位凸點。",
+  G: "左手食指｜左手食指從 F 鍵稍微向右移到 G 鍵。",
+  H: "右手食指｜右手食指從 J 鍵稍微向左移到 H 鍵。",
+  J: "右手食指｜請用右手食指按下 J 鍵，並留意定位凸點。",
+  K: "右手中指｜請用右手中指按下 K 鍵。",
+  L: "右手無名指｜請用右手無名指按下 L 鍵。",
+  ";": "右手小指｜請用右手小指按下分號鍵。"
 };
 
 let currentQuestion = 0;
