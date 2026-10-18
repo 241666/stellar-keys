@@ -224,11 +224,10 @@ function startGame() {
   showTarget();
 }
 
-/* 計算正確率 */
+/* 計算正確率：每題完成並答對，就算該題正確 */
 function calculateAccuracy() {
-  const attempts = correctCount + wrongCount;
-  return attempts > 0
-    ? Math.round((correctCount / attempts) * 100)
+  return currentQuestion > 0
+    ? Math.round((correctCount / currentQuestion) * 100)
     : 0;
 }
 
