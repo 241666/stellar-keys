@@ -313,16 +313,24 @@ function finishGame() {
     `答對 ${correctCount} 次｜錯誤 ${wrongCount} 次｜正確率 ${accuracy}%`;
 
   if (passed) {
+    // 記住剛完成的關卡，避免後續切換關卡時顯示錯誤
+    const completedLevel = selectedLevel;
+
     // 通關後領取本關的收藏碎片
     let rewardMessage = "";
 
     if (window.EdenCollection) {
-      const reward = window.EdenCollection.collectForLevel(selectedLevel);
+      const reward = window.EdenCollection.collectForLevel(completedLevel);
 
       if (reward.success) {
         rewardMessage = reward.alreadyCollected
           ? `🌿 已收集過「${reward.fragment.name}」！`
           : `✨ 獲得收藏碎片：「${reward.fragment.name}」！`;
+
+        // 只有首次取得新收藏時才顯示獎勵視窗
+        if (!reward.alreadyCollected && rewardDetails[completedLevel]) {
+          showReward(rewardDetails[completedLevel]);
+        }
       }
     }
 
