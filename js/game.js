@@ -69,6 +69,28 @@ if (rewardClaimButton) {
   rewardClaimButton.addEventListener("click", closeReward);
 }
 
+/* 暫時測試按鈕：預覽收藏獎勵，不修改收藏紀錄 */
+const testRewardButton = document.getElementById("test-reward-button");
+
+if (testRewardButton) {
+  testRewardButton.addEventListener("click", () => {
+    const choice = prompt(
+      "想預覽哪個收藏道具？\n輸入 1：森林翡翠\n輸入 2：古木印記\n輸入 3：桃源核心"
+    );
+
+    if (choice === null) return;
+
+    const selectedReward = rewardDetails[Number(choice)];
+
+    if (!selectedReward) {
+      alert("請輸入 1、2 或 3，再試一次喔！");
+      return;
+    }
+
+    showReward(selectedReward);
+  });
+}
+
 /* 檢查目前頁面是否有必要的 HTML 元素 */
 const requiredElements = {
   targetElement,
