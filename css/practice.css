@@ -458,3 +458,330 @@ body {
   );
   border-radius: 999px;
 }
+
+/* ===== Eden-Keys｜收藏獎勵視窗 ===== */
+
+/* 全螢幕背景遮罩 */
+.reward-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 24px;
+  overflow-y: auto;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(23, 61, 53, 0.55),
+      rgba(3, 10, 9, 0.94)
+    );
+
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+
+/* 隱藏視窗時，確保不會覆蓋原本的練習頁面 */
+.reward-overlay[hidden] {
+  display: none;
+}
+
+/* 中央獎勵面板 */
+.reward-modal {
+  position: relative;
+  width: min(760px, 100%);
+  box-sizing: border-box;
+
+  padding: 38px 42px 32px;
+
+  color: #f7f4e9;
+  text-align: center;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(63, 111, 82, 0.32),
+      transparent 55%
+    ),
+    linear-gradient(
+      145deg,
+      #152e27,
+      #0b1916 65%,
+      #132a22
+    );
+
+  border: 1px solid #a78a4d;
+  border-radius: 18px;
+
+  box-shadow:
+    0 0 0 5px rgba(167, 138, 77, 0.12),
+    0 0 45px rgba(71, 151, 107, 0.18),
+    0 25px 90px rgba(0, 0, 0, 0.65);
+}
+
+/* 面板內側的細金框 */
+.reward-modal::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+
+  border: 1px solid rgba(194, 164, 100, 0.3);
+  border-radius: 12px;
+
+  pointer-events: none;
+}
+
+/* 英文小標 */
+.reward-eyebrow {
+  margin: 0 0 10px;
+
+  color: #c6b27b;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+}
+
+/* 獲得新收藏 */
+.reward-modal h2 {
+  margin: 0;
+
+  color: #f5e8b6;
+  font-size: clamp(27px, 4vw, 38px);
+  letter-spacing: 0.12em;
+
+  text-shadow: 0 0 20px rgba(221, 190, 107, 0.2);
+}
+
+/* 標題下方的裝飾分隔線 */
+.reward-divider {
+  width: min(360px, 75%);
+  height: 1px;
+  margin: 20px auto 26px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #bda15c,
+    #f1df9d,
+    #bda15c,
+    transparent
+  );
+}
+
+/* 圖片與物品介紹 */
+.reward-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 30px;
+
+  text-align: left;
+}
+
+/* 道具圖片展示區 */
+.reward-art-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+
+  overflow: hidden;
+  border-radius: 16px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(76, 153, 103, 0.24),
+      rgba(8, 24, 19, 0.1) 68%,
+      transparent
+    );
+}
+
+/* 道具圖片 */
+.reward-art {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+
+  filter: drop-shadow(0 0 16px rgba(93, 206, 137, 0.2));
+}
+
+/* 物品名稱 */
+.reward-details h3 {
+  margin: 0 0 14px;
+
+  color: #e3f0d1;
+  font-size: clamp(24px, 3vw, 32px);
+  letter-spacing: 0.08em;
+}
+
+/* 關卡名稱 */
+.reward-level {
+  display: inline-block;
+
+  margin: 0 0 20px;
+  padding: 8px 14px;
+
+  color: #e6d39a;
+  font-size: 13px;
+  line-height: 1.6;
+
+  border: 1px solid rgba(189, 161, 92, 0.65);
+  border-radius: 6px;
+  background: rgba(7, 19, 15, 0.45);
+}
+
+/* 道具故事 */
+.reward-description {
+  margin: 0;
+
+  color: #d1d9cd;
+  font-size: 15px;
+  line-height: 2;
+  overflow-wrap: anywhere;
+}
+
+/* 收下碎片按鈕 */
+.reward-claim {
+  position: relative;
+  z-index: 1;
+
+  display: block;
+  width: min(300px, 100%);
+  min-height: 54px;
+
+  margin: 30px auto 0;
+  padding: 13px 24px;
+
+  color: #f7f4e9;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+
+  border: 1px solid #d2b96d;
+  border-radius: 999px;
+
+  background: linear-gradient(
+    180deg,
+    #367d5a,
+    #194a36
+  );
+
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.15),
+    0 5px 18px rgba(0, 0, 0, 0.25);
+
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* 關閉按鈕 */
+.reward-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  z-index: 2;
+
+  width: 42px;
+  height: 42px;
+
+  color: #e8d8a7;
+  font-size: 28px;
+  line-height: 1;
+
+  border: 1px solid rgba(210, 185, 109, 0.7);
+  border-radius: 50%;
+  background: rgba(6, 17, 13, 0.7);
+
+  cursor: pointer;
+}
+
+/* 鍵盤操作時的焦點提示 */
+.reward-claim:focus-visible,
+.reward-close:focus-visible {
+  outline: 3px solid #e8d8a7;
+  outline-offset: 4px;
+}
+
+/* 滑鼠互動效果 */
+@media (hover: hover) {
+  .reward-claim:hover {
+    background: linear-gradient(
+      180deg,
+      #438e66,
+      #225b42
+    );
+
+    border-color: #f0dc9b;
+    transform: translateY(-2px);
+  }
+
+  .reward-close:hover {
+    color: #ffffff;
+    background: #254b38;
+  }
+}
+
+/* 手機與較窄的畫面 */
+@media (max-width: 600px) {
+  .reward-overlay {
+    align-items: flex-start;
+    padding: 14px;
+  }
+
+  .reward-modal {
+    margin: auto 0;
+    padding: 38px 22px 24px;
+  }
+
+  .reward-modal h2 {
+    padding: 0 16px;
+    font-size: 27px;
+  }
+
+  .reward-content {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .reward-art-frame {
+    width: min(230px, 100%);
+    margin: 0 auto;
+  }
+
+  .reward-details {
+    text-align: center;
+  }
+
+  .reward-details h3 {
+    font-size: 26px;
+  }
+
+  .reward-level {
+    margin-bottom: 12px;
+  }
+
+  .reward-description {
+    font-size: 14px;
+  }
+
+  .reward-claim {
+    margin-top: 22px;
+  }
+
+  .reward-close {
+    top: 12px;
+    right: 12px;
+  }
+}
