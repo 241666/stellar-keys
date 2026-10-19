@@ -255,6 +255,17 @@ function finishGame() {
     `答對 ${correctCount} 次｜錯誤 ${wrongCount} 次｜正確率 ${accuracy}%`;
 
   if (passed) {
+        // 通關後領取本關的收藏碎片
+    if (window.EdenCollection) {
+      const reward = window.EdenCollection.collectForLevel(selectedLevel);
+
+      if (reward.success) {
+        feedback.textContent = reward.alreadyCollected
+          ? `🌿 你已經收集過「${reward.fragment.name}」了！`
+          : `✨ 獲得收藏碎片：「${reward.fragment.name}」！`;
+      }
+    }
+    
     if (selectedLevel < TOTAL_LEVELS) {
       unlockedLevel = Math.max(unlockedLevel, selectedLevel + 1);
 
