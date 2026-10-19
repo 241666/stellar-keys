@@ -89,10 +89,76 @@
       準備好後開始練習，熟悉主列按鍵。
     </div>
 
-    <a class="back-link" href="index.html">
+        <a class="back-link" href="index.html">
       ← 回到 Eden-Keys 首頁
     </a>
   </main>
+
+  <!-- 收藏獎勵視窗：預設隱藏，通關時才顯示 -->
+  <div
+    class="reward-overlay"
+    id="reward-overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="reward-title"
+    aria-describedby="reward-description"
+    hidden
+  >
+    <section class="reward-modal">
+
+      <button
+        class="reward-close"
+        id="reward-close"
+        type="button"
+        aria-label="關閉收藏獎勵視窗"
+      >
+        ×
+      </button>
+
+      <p class="reward-eyebrow">EDEN-KEYS · COLLECTION</p>
+
+      <h2 id="reward-title">獲得新收藏！</h2>
+
+      <div class="reward-divider"></div>
+
+      <div class="reward-content">
+
+        <div class="reward-art-frame">
+          <img
+            class="reward-art"
+            id="reward-art"
+            src="images/forest-jade.png"
+            alt="森林翡翠收藏道具"
+          >
+        </div>
+
+        <div class="reward-details">
+          <h3 id="reward-name">森林翡翠</h3>
+
+          <p class="reward-level" id="reward-level">
+            第一關｜森林初探
+          </p>
+
+          <p
+            class="reward-description"
+            id="reward-description"
+          >
+            蘊含森林能量的古老翡翠，據說是森林守護者的祝福。
+          </p>
+        </div>
+
+      </div>
+
+      <button
+        class="reward-claim"
+        id="reward-claim"
+        type="button"
+      >
+        收下碎片
+      </button>
+
+    </section>
+  </div>
 
 <script src="js/collection.js"></script>
 <script src="js/game.js"></script>
