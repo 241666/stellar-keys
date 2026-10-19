@@ -255,17 +255,22 @@ function finishGame() {
     `答對 ${correctCount} 次｜錯誤 ${wrongCount} 次｜正確率 ${accuracy}%`;
 
   if (passed) {
-        // 通關後領取本關的收藏碎片
+    // 通關後領取本關的收藏碎片
+    let rewardMessage = "";
+
     if (window.EdenCollection) {
       const reward = window.EdenCollection.collectForLevel(selectedLevel);
 
       if (reward.success) {
-        feedback.textContent = reward.alreadyCollected
-          ? `🌿 你已經收集過「${reward.fragment.name}」了！`
+        rewardMessage = reward.alreadyCollected
+          ? `🌿 已收集過「${reward.fragment.name}」！`
           : `✨ 獲得收藏碎片：「${reward.fragment.name}」！`;
       }
     }
-    
+
+    // 保留原本的關卡解鎖功能
+    let passMessage = "";
+
     if (selectedLevel < TOTAL_LEVELS) {
       unlockedLevel = Math.max(unlockedLevel, selectedLevel + 1);
 
@@ -275,16 +280,22 @@ function finishGame() {
         console.warn("無法儲存關卡解鎖紀錄。", error);
       }
 
-      feedback.textContent =
+      passMessage =
         `🌿 成功通過第 ${selectedLevel} 關！已解鎖第 ${selectedLevel + 1} 關。`;
     } else {
-      feedback.textContent = "🌸 恭喜完成全部森林鍵位試煉！";
+      passMessage = "🌸 恭喜完成全部森林鍵位試煉！";
     }
+
+    // 同時顯示通關訊息與收藏獎勵
+    feedback.textContent = rewardMessage
+      ? `${passMessage}\n${rewardMessage}`
+      : passMessage;
+
   } else {
     feedback.textContent =
       `本關正確率為 ${accuracy}%，需要達到 ${PASS_ACCURACY}% 才能解鎖下一關。`;
   }
-
+  
   renderLevelOptions();
   restartButton.textContent = passed ? "再練習一次" : "重新挑戰本關";
   restartButton.hidden = false;
