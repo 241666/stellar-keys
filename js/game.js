@@ -10,6 +10,64 @@ const restartButton = document.getElementById("restart-button");
 const keyboard = document.getElementById("keyboard");
 const fingerGuide = document.getElementById("finger-guide");
 const feedback = document.getElementById("practice-feedback");
+/* 收藏獎勵視窗 */
+const rewardOverlay = document.getElementById("reward-overlay");
+const rewardImage = document.getElementById("reward-art");
+const rewardName = document.getElementById("reward-name");
+const rewardLevel = document.getElementById("reward-level");
+const rewardDescription = document.getElementById("reward-description");
+const rewardCloseButton = document.getElementById("reward-close");
+const rewardClaimButton = document.getElementById("reward-claim");
+
+/* 各關卡的收藏道具資料 */
+const rewardDetails = {
+  1: {
+    image: "images/forest-jade.png",
+    name: "森林翡翠",
+    level: "第一關｜森林初探",
+    description: "蘊含森林能量的古老翡翠，據說是森林守護者的祝福。"
+  },
+  
+  2: {
+    image: "images/ancient-mark.png",
+    name: "古木印記",
+    level: "第二關｜林間探索",
+    description: "刻有古老符文的木質印記，封存著森林深處流傳的記憶。"
+  },
+  3: {
+    image: "images/eden-core.png",
+    name: "桃源核心",
+    level: "第三關｜遺跡試煉",
+    description: "蘊含桃源之力的古代核心，是通往桃源祕境的重要收藏。"
+  }
+};
+
+/* 顯示收藏獎勵視窗 */
+function showReward(reward) {
+  if (!rewardOverlay || !reward) return;
+
+  rewardImage.src = reward.image;
+  rewardImage.alt = `${reward.name}收藏道具`;
+  rewardName.textContent = reward.name;
+  rewardLevel.textContent = reward.level;
+  rewardDescription.textContent = reward.description;
+
+  rewardOverlay.hidden = false;
+}
+
+/* 關閉收藏獎勵視窗 */
+function closeReward() {
+  if (!rewardOverlay) return;
+  rewardOverlay.hidden = true;
+}
+
+if (rewardCloseButton) {
+  rewardCloseButton.addEventListener("click", closeReward);
+}
+
+if (rewardClaimButton) {
+  rewardClaimButton.addEventListener("click", closeReward);
+}
 
 /* 檢查目前頁面是否有必要的 HTML 元素 */
 const requiredElements = {
